@@ -1,0 +1,21 @@
+FROM s/lib:latest AS library
+
+# We use dotnet core here for the console app
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1
+
+# Create a working directory app under the root folder of the dotnet core runtime image
+WORKDIR /app
+
+# Copy the library files first
+COPY --from=library /app/* ./
+
+# Copy only the items starting with myconsole from the console folder of the current project to the
+# /app folder in the image
+COPY /console/myconsole* ./
+
+# Copy only the items starting with myconsole from the console folder of the current project to the
+# /app/consoleonly folder in the image just to show that only the myconsole* items are indeed copied
+RUN mkdir /consoleonly
+COPY /console/myconsole* /consoleonly/
+
+ENTRYPOINT ["dotnet", "myconsole.dll"]

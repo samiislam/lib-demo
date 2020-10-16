@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1
+
+# Create a working directory app under the root folder in the "dotnet/core/runtime:3.1" image
+WORKDIR /app
+
+# Copy everything from the lib folder of the current project to the /app folder in the image
+COPY /lib .
+
+#Do not start any process

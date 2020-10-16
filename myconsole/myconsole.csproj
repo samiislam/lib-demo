@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <!-- Using assembly reference instead of project reference -->
+    <Reference Include="../lib/mylib.dll">
+      <!-- We have to use a hintpath: set this to current folder -->
+      <HintPath>./mylib.dll</HintPath>
+      <!-- Do not set private to false since 
+           this messes up the dependencies for
+           the assembly in the myconsole.deps.json
+           file. We are not going to copy the
+           dependent libraries during creation of
+           the docker image so that the dependencies
+           are used from the base docker image
+      -->
+      <!--<Private>false</Private>-->
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>

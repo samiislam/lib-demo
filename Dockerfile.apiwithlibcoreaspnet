@@ -1,0 +1,15 @@
+FROM s/libaspnet:latest
+
+# Create a working directory app under the root folder in the "samiislam/lib:latest" image
+WORKDIR /app
+
+# Copy only the items starting with myapi from the api folder of the current project to the
+# /app folder in the image
+COPY /api/myapi* ./
+
+# Copy only the items starting with myapi from the api folder of the current project to the
+# /app/apionly folder in the image just to show that only the myapi* items are indeed copied
+RUN mkdir /apionly
+COPY /api/myapi* /apionly/
+
+ENTRYPOINT ["dotnet", "myapi.dll"]

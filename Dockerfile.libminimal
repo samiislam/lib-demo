@@ -1,0 +1,9 @@
+FROM scratch
+
+# Create a working directory app under the root folder
+WORKDIR /app
+
+# Copy everything from the lib folder of the current project to the /app folder in the image
+COPY /lib .
+
+#Do not start any process
