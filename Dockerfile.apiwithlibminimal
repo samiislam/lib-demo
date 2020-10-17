@@ -1,5 +1,6 @@
 # STAGE 1
 FROM s/lib:latest AS library
+#FROM s/lib:2.0 AS library
 
 # STAGE 2
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
